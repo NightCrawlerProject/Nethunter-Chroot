@@ -14,7 +14,7 @@ Second:
 Install Magisk(Anything above magisk v20 is enough)
 
 Third:
-Download any chroot here minimal or full
+Download chroot from this repository
 Put the downloaded chroot into your phone's internal storage
 
 Fourth:

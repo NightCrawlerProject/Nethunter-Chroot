@@ -16,8 +16,9 @@ Install Magisk(Anything above magisk v20 is enough)
 Third:
 Download chroot from this repository
 Put the downloaded chroot into your phone's internal storage
+you can rename it to kalifs-backup-full.tar.gz
 
 Fourth:
 Enter the pocohunter/nethunter app(depends which rom you downloaded)
-In the pocohunter/nethunter app select Kali Chroot Manager and click
-Install type the location of the chroot you downloaded
+In the pocohunter/nethunter app select Kali Chroot Manager and click edit
+then click install, type the location of the chroot you downloaded

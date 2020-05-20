@@ -16,7 +16,7 @@ Install Magisk(Anything above magisk v20 is enough)
 Third:
 Download chroot from this repository
 Put the downloaded chroot into your phone's internal storage
-you can rename it to kalifs-backup-full.tar.gz
+you can rename it to kalifs-arm64-full.tar.xz
 
 Fourth:
 Enter the pocohunter/nethunter app(depends which rom you downloaded)

@@ -20,5 +20,5 @@ you can rename it to kalifs-backup-full.tar.gz
 
 Fourth:
 Enter the pocohunter/nethunter app(depends which rom you downloaded)
-In the pocohunter/nethunter app select Kali Chroot Manager and click edit
-after that replace the word "kali-arm64" with "kalifs" and click ok, after that click install, type the location of the chroot you downloaded
+In the pocohunter/nethunter app select Kali Chroot Manager,
+click install, type the location of the chroot you downloaded (kali-arm64-full.tar.xz)

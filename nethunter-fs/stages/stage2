@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# Add our sources
+echo "Creating /etc/apt/sources.list file"
+if [ -n "$build_repo" ]; then
+    cat << EOF > "$rootfs/etc/apt/sources.list"
+deb http://http.kali.org/kali kali-rolling main contrib non-free
+deb http://http.kali.org/kali $build_repo main contrib non-free
+# For source package access, uncomment the following line
+# deb-src http://http.kali.org/kali kali-rolling main contrib non-free
+EOF
+else
+    cat << EOF > "$rootfs/etc/apt/sources.list"
+deb http://http.kali.org/kali kali-rolling main contrib non-free
+# For source package access, uncomment the following line
+# deb-src http://http.kali.org/kali kali-rolling main contrib non-free
+EOF
+fi
+
+# fix for TUN symbolic link to enable programs like openvpn
+# set terminal length to 80 because root destroy terminal length
+# add fd to enable stdin/stdout/stderr
+echo "I: Creating /root/.bash_profile file"
+cat << EOF > "$rootfs/root/.bash_profile"
+export TERM=xterm-256color
+stty columns 80
+cd /root
+if [ ! -d /dev/net ]; then
+	mkdir -p /dev/net
+	ln -sf /dev/tun /dev/net/tun
+fi
+
+if [ ! -d /dev/fd ]; then
+	ln -sf /proc/self/fd /dev/fd
+	ln -sf /dev/fd/0 /dev/stdin
+	ln -sf /dev/fd/1 /dev/stdout
+	ln -sf /dev/fd/2 /dev/stderr
+fi
+EOF
+
+# Create hosts file
+echo "I: Creating /etc/hosts file"
+cat << EOF > "$rootfs/etc/hosts"
+127.0.0.1       kali localhost
+::1             localhost ip6-localhost ip6-loopback
+fe00::0         ip6-localnet
+ff00::0         ip6-mcastprefix
+ff02::1         ip6-allnodes
+ff02::2         ip6-allrouters
+EOF
+
+# Create default capture folders along with /sdcard, /external_sd, /system, /root/.ssh
+echo "I: Creating /root/.ssh directory"
+mkdir -p "$rootfs/root/.ssh"
+
+echo "I: Creating /root/.vnc directory"
+mkdir -p "$rootfs/root/.vnc"
+
+echo "I: Creating /etc/skel/.vnc directory"
+mkdir -p "$rootfs/etc/skel/.vnc"
+
+echo "I: Creating /sdcard, /external_sd, /system mountpoints"
+mkdir -p "$rootfs/sdcard" "$rootfs/external_sd" "$rootfs/system"
+
+echo "I: Creating /captures directories"
+cap="$rootfs/captures"
+mkdir -p "$cap/evilap" "$cap/ettercap" "$cap/kismet/db" "$cap/nmap" \
+	"$cap/sslstrip" "$cap/tshark" "$cap/wifite" "$cap/tcpdump" \
+	"$cap/urlsnarf" "$cap/dsniff" "$cap/honeyproxy" "$cap/mana/sslsplit"
+
+# Link /lib/modules to /system/lib/modules for modprobe
+echo "I: Creating mountpoint /lib/modules"
+mkdir -p "$rootfs/lib/modules"
+
+echo "[+] Completed stage 2!"

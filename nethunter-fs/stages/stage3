@@ -1,0 +1,299 @@
+#!/bin/bash
+
+export MALLOC_CHECK_=0 # workaround for LP: #520465
+export LC_ALL=C
+export DEBIAN_FRONTEND=noninteractive
+
+## Sometimes we might need to install packages that are not in the kali repository
+## Copy packages from local repository to chroot for installation
+mkdir -p $rootfs/tmp/deb/
+if ls $rootfs/../repo/$build_arch/*.deb &>/dev/null; then
+    echo "[+] Copying $build_arch packages to chroot from local repository"
+    cp $rootfs/../repo/$build_arch/*.deb $rootfs/tmp/deb/
+fi
+if ls $rootfs/../repo/all/*.deb &>/dev/null; then
+    echo "[+] Copying generic packages to chroot from local repository"
+    cp $rootfs/../repo/all/*.deb $rootfs/tmp/deb/
+fi
+
+mount -t proc proc "$rootfs/proc"
+mount -o bind /dev "$rootfs/dev"
+mount -o bind /dev/pts "$rootfs/dev/pts"
+mount -t sysfs sys "$rootfs/sys"
+
+cat << EOF > "$rootfs/debconf.set"
+console-common console-data/keymap/policy select Select keymap from full list
+console-common console-data/keymap/full select en-latin1-nodeadkeys
+EOF
+
+cat << EOF > "$rootfs/third-stage"
+#!/bin/bash
+
+dpkg-divert --add --local --divert /usr/sbin/invoke-rc.d.chroot --rename /usr/sbin/invoke-rc.d
+cp /bin/true /usr/sbin/invoke-rc.d
+echo -e "#!/bin/sh\nexit 101" > /usr/sbin/policy-rc.d
+chmod +x /usr/sbin/policy-rc.d
+
+apt-get clean
+rm -rf /var/lib/apt/lists/*
+apt-get clean
+apt-get update
+
+debconf-set-selections /debconf.set
+rm -f /debconf.set
+apt-get -y install locales-all git-core binutils ca-certificates initramfs-tools locales console-common less nano git
+echo "root:toor" | chpasswd
+
+# This looks weird, but we do it twice because every so often, there's a failure to download from the mirror
+# So to workaround it, we attempt to install them twice.
+if [ -n "$build_repo" ]; then
+    echo "I: Installing packages from $build_repo with apt-get: $packages"
+    for i in $packages;
+    do
+        echo "I: Installing package \$i"
+        apt-get -t $build_repo --yes install \$i || apt-get -t $build_repo --yes --fix-broken install 
+        apt-get -t $build_repo --yes install \$i || apt-get -t $build_repo --yes --fix-broken install 
+    done
+else
+    echo "I: Installing packages with apt-get: $packages"
+    for i in $packages;
+    do
+        echo "I: Installing package \$i"
+        apt-get --yes install \$i || apt-get --yes --fix-broken install
+        apt-get --yes install \$i || apt-get --yes --fix-broken install
+    done
+fi
+
+rm -f /usr/sbin/policy-rc.d
+rm -f /usr/sbin/invoke-rc.d
+dpkg-divert --remove --rename /usr/sbin/invoke-rc.d
+
+## Install custom packages from local repo
+if ls /tmp/deb/*.deb &>/dev/null; then
+   apt install -y /tmp/deb/*.deb
+fi
+if [ -d /tmp/deb ]; then
+   rm -rf /tmp/deb
+fi
+
+# Create group to permit vnc users to access sockets to avoid the following error:
+# "vncserver: socket failed: Permission denied"
+addgroup --gid 3003 sockets
+
+## Create non-privileged user
+groupadd -g 100000 kali
+useradd -m -u 100000 -g 100000 -G sudo,sockets -s /bin/bash kali
+echo "kali:kali" | chpasswd
+EOF
+# End of third-stage script
+
+# Let's do a little bit of magic from outside the chroot
+if [ "$build_size" = full ]; then
+    # Add default xstartup file for tigervnc-standalone-server
+    cat << EOF >> "$rootfs/etc/skel/.vnc/xstartup"
+#!/bin/sh
+
+#############################
+##          All            ##
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+export SHELL=/bin/bash
+
+#############################
+##          Gnome          ##
+#[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+#[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+#vncconfig -iconic &
+#dbus-launch --exit-with-session gnome-session &
+
+
+############################
+##           LXQT         ##
+####exec openbox-session
+#exec startlxqt
+
+
+############################
+##          KDE           ##
+#exec /usr/bin/startkde
+
+
+############################
+##          XFCE          ##
+startxfce4 &
+EOF
+	# We should run git clone outside chroot because it has issues with machine-code translation
+	git clone https://github.com/RfidResearchGroup/proxmark3.git "$rootfs/opt/proxmark3"
+        ## git clone https://github.com/adaptivethreat/Empire.git "$rootfs/opt/Empire"
+
+	# powershell for arm64 is not yet available in Microsofts repos so let's install it manually
+	if [ $build_arch == "arm64" ]; then
+		mkdir -p $rootfs/opt/microsoft/powershell
+		wget -P $rootfs/opt/microsoft/powershell https://github.com/PowerShell/PowerShell/releases/download/v6.2.0-preview.4/powershell-6.2.0-preview.4-linux-arm64.tar.gz
+                tar -xzf $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm64.tar.gz -C $rootfs/opt/microsoft/powershell
+		rm $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm64.tar.gz
+	fi
+	if [ $build_arch == "armhf" ]; then
+		mkdir -p $rootfs/opt/microsoft/powershell
+		wget -P $rootfs/opt/microsoft/powershell https://github.com/PowerShell/PowerShell/releases/download/v6.2.0-preview.4/powershell-6.2.0-preview.4-linux-arm32.tar.gz
+               tar -xzf $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm32.tar.gz -C $rootfs/opt/microsoft/powershell
+		rm $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm32.tar.gz
+	fi
+	# Microsoft no longer supports deletion of the file DELETE_ME_TO_DISABLE_CONSOLEHOST_TELEMETRY to disable telemetry
+	# We have to set this environment variable instead
+	cat << EOF > "$rootfs/etc/profile.d/powershell.sh"
+# Microsoft no longer supports deletion of the file DELETE_ME_TO_DISABLE_CONSOLEHOST_TELEMETRY to disable telemetry
+# We have to set this environment variable instead
+
+export POWERSHELL_TELEMETRY_OPTOUT=1
+EOF
+
+        cat << EOF >> "$rootfs/etc/bash.bashrc"
+# Microsoft no longer supports deletion of the file DELETE_ME_TO_DISABLE_CONSOLEHOST_TELEMETRY to disable telemetry
+# We have to set this environment variable instead
+
+export POWERSHELL_TELEMETRY_OPTOUT=1
+EOF
+
+        # The installation of Empire will still throw a few errors in relation to not being able to install powershell and that it cannot disable telemetry but that is not
+	# to worry about anymore as we have taken care of it ourselves now
+
+# End of doing a little magic from outside the chroot
+	cat << EOF >> "$rootfs/third-stage"
+
+# Enable PHP in Apache
+a2enmod php7.3
+
+# Enable /var/www/html as default, disable mana unless we need it
+a2dissite 000-mana-toolkit.conf
+a2ensite 000-default.conf
+
+ if cd /opt/proxmark3; then
+        ## Install some dependencies first
+        ##apt install -y libpcsclite-dev pcscd pkg-config
+        ## sudo apt-get install -y p7zip git ca-certificates build-essential libreadline5 libreadline-dev libusb-0.1-4 libusb-dev perl pkg-config wget libncurses5-dev gcc-arm-none-eabi libstdc++-arm-none-eabi-newlib libqt4-dev
+        sudo apt-get install -y --no-install-recommends git ca-certificates build-essential pkg-config libreadline-dev gcc-arm-none-eabi libnewlib-dev qtbase5-dev libsndfile1-dev
+        ## Let's build for the new RDV4 platform with the bluetooth addon
+        echo "PLATFORM=PM3RDV4" > Makefile.platform
+        echo "PLATFORM_EXTRAS=BTADDON" >> Makefile.platform
+	make all
+fi
+
+##if cd /opt/Empire/setup; then
+##        # Lets patch install.sh to build xar for our target architecture
+##        if [ $build_arch == "arm64" ]; then
+##            sed "install.sh" -i -e "s/(cd xar-1.5.2 \&\& \.\/configure)/(cd xar-1.5.2 \&\& \.\/configure --build=armv8l-unkown-linux-gnu)/"
+##        elif [ $build_arch == "armhf" ]; then
+##            sed "install.sh" -i -e "s/(cd xar-1.5.2 \&\& \.\/configure)/(cd xar-1.5.2 \&\& \.\/configure --build=armv7l-unkown-linux-gnu)/"
+##        fi
+##	chmod +x install.sh
+##	printf "\n" | ./install.sh
+##fi
+EOF
+	# End of third-stage script append
+fi
+
+chmod +x "$rootfs/third-stage"
+chroot_do /third-stage
+
+# Sometimes we want to use kali-experimental
+# Let's remove it after we are done with stage 3
+if [ -n "$build_repo" ]; then
+    echo "[+] Resetting /etc/apt/sources.list file"
+    cat << EOF > "$rootfs/etc/apt/sources.list"
+deb http://http.kali.org/kali kali-rolling main contrib non-free
+# For source package access, uncomment the following line
+# deb-src http://http.kali.org/kali kali-rolling main contrib non-free
+EOF
+fi
+
+# Add /system/xbin and /system/bin to PATH
+echo "[+] Adding /system/xbin and /system/bin to path"
+cat << EOF >> "$rootfs/root/.profile"
+
+# Add /system/xbin and /system/bin to PATH
+PATH="$PATH:/system/xbin:/system/bin"
+EOF
+
+# Source .bashrc and .profile at login
+echo "[+] Adding bashrc/profile sourcing to bash_profile"
+cat << EOF >> "$rootfs/root/.bash_profile"
+
+. /root/.bashrc
+. /root/.profile
+cd ~
+EOF
+
+# Removing Xfce4 panel plugins that are not needed in KeX
+echo "[+] Removing unneeded Xfce4 panel plugins"
+sed -i '/\n/!N;/\n.*\n/!N;/\n.*\n.*kazam/{$d;N;N;d};P;D' "$rootfs/etc/xdg/xfce4/panel/default.xml"
+sed -i '/pulseaudio/d' "$rootfs/etc/xdg/xfce4/panel/default.xml"
+sed -i '/power-manager-plugin/d' "$rootfs/etc/xdg/xfce4/panel/default.xml"
+
+# Modify Kismet log saving folder
+echo "[+] Modifying Kismet log folder"
+sed -i 's|.*\blogprefix=.*|logprefix=/captures/kismet/|g' "$rootfs/etc/kismet/kismet.conf"
+sed -i 's|.*\bncsource=wlan0|ncsource=wlan1|g' "$rootfs/etc/kismet/kismet.conf"
+sed -i 's|.*\bgpshost=.*|gpshost=127.0.0.1:2947|g' "$rootfs/etc/kismet/kismet.conf"
+
+# Modify SSHD to allow password logins which is a security risk
+# if the user doesn't change their password
+# or change their configuration for key based ssh
+echo "[+] Modifying SSH to allow root user"
+
+sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/g' "$rootfs/etc/ssh/sshd_config"
+sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' "$rootfs/etc/ssh/sshd_config"
+sed -i 's/\#PermitRootLogin yes/PermitRootLogin yes/g' "$rootfs/etc/ssh/sshd_config"
+
+# Install dictionary
+mkdir -p "$rootfs/opt/dic"
+tar xvf dictionary/89.tar.gz -C "$rootfs/opt/dic"
+cp dictionary/wordlist.txt "$rootfs/opt/dic/wordlist.txt"
+cp dictionary/pinlist.txt "$rootfs/opt/dic/pinlist.txt"
+
+# Sets the default for hostapd.conf to the mana karma version
+sed -i 's#^DAEMON_CONF=.*#DAEMON_CONF=/sdcard/nh_files/configs/hostapd-karma.conf#' "$rootfs/etc/init.d/hostapd"
+sed -i 's/wlan0/wlan1/g' "$rootfs/etc/mana-toolkit/hostapd-mana-"*
+
+# DNSMASQ Configuration options for optional access point
+cat << EOF > "$rootfs/etc/dnsmasq.conf"
+log-facility=/var/log/dnsmasq.log
+#address=/#/10.0.0.1
+#address=/google.com/10.0.0.1
+interface=wlan1
+dhcp-range=10.0.0.10,10.0.0.250,12h
+dhcp-option=3,10.0.0.1
+dhcp-option=6,10.0.0.1
+#no-resolv
+log-queries
+EOF
+
+# In order for metasploit to work daemon,nginx,postgres must all be added to inet
+# beef-xss creates user beef-xss. Openvpn server requires nobdy:nobody in order to work.
+cat << EOF >> "$rootfs/etc/group"
+inet:x:3004:postgres,root,beef-xss,daemon,nginx,mysql
+nobody:x:3004:nobody
+EOF
+
+cp -f "$rootfs/etc/skel/.vnc/xstartup" "$rootfs/root/.vnc/xstartup"
+
+# Apt now adds a new user to "nobody" but the _apt user can't access updates
+# because of inet.  Modify passwd to put them in inet group for android
+sed -i -e 's/^\(_apt:\)\([^:]\)\(:[0-9]*\)\(:[0-9]*\):/\1\2\3:3004:/' "$rootfs/etc/passwd"
+
+# Fix armitage to run on NH
+# https://github.com/offensive-security/kali-nethunter/issues/600
+sed -i s/-XX\:\+AggressiveHeap//g "$rootfs/usr/share/armitage/armitage"
+
+# Insert correct .bashrc file from kali-defaults
+chroot_do cp /etc/skel/.bashrc /root/.bashrc
+
+# Copy necessary scripts and make executable (/dev/null to supress error msgs for following symlinks)
+chroot_do chmod 755 /usr/bin/* 2> /dev/null
+chroot_do chmod 755 /usr/share/mana-toolkit/run-mana/*.sh 2> /dev/null
+
+# Minor fix for mana-toolkit which made changes in update.  We need to mirror fixes.
+sed -i 's|dhcpd -cf /etc/mana-toolkit/dhcpd\.conf.*|dnsmasq -z -C /etc/mana-toolkit/dnsmasq-dhcpd.conf -i $phy -I lo|' "$rootfs/usr/share/mana-toolkit/run-mana/"*
+
+
+echo "[+] Completed stage 3!"

@@ -6,15 +6,17 @@ export DEBIAN_FRONTEND=noninteractive
 
 ## Sometimes we might need to install packages that are not in the kali repository
 ## Copy packages from local repository to chroot for installation
-mkdir -p $rootfs/tmp/deb/
+mkdir -p $rootfs/var/cache/apt/archives/
 if ls $rootfs/../repo/$build_arch/*.deb &>/dev/null; then
     echo "[+] Copying $build_arch packages to chroot from local repository"
-    cp $rootfs/../repo/$build_arch/*.deb $rootfs/tmp/deb/
+    cp $rootfs/../repo/$build_arch/*.deb $rootfs/var/cache/apt/archives/
 fi
 if ls $rootfs/../repo/all/*.deb &>/dev/null; then
     echo "[+] Copying generic packages to chroot from local repository"
-    cp $rootfs/../repo/all/*.deb $rootfs/tmp/deb/
+    cp $rootfs/../repo/all/*.deb $rootfs/var/cache/apt/archives/
 fi
+
+apt install -y /var/cache/apt/archives/*.deb
 
 mount -t proc proc "$rootfs/proc"
 mount -o bind /dev "$rootfs/dev"
@@ -52,7 +54,8 @@ if [ -n "$build_repo" ]; then
     do
         echo "I: Installing package \$i"
         apt-get -t $build_repo --yes install \$i || apt-get -t $build_repo --yes --fix-broken install 
-        apt-get -t $build_repo --yes install \$i || apt-get -t $build_repo --yes --fix-broken install 
+	cp -r $rootfs/var/cache/apt/archives/* $rootfs/../repo/arm64
+#        apt-get -t $build_repo --yes install \$i || apt-get -t $build_repo --yes --fix-broken install 
     done
 else
     echo "I: Installing packages with apt-get: $packages"
@@ -60,7 +63,7 @@ else
     do
         echo "I: Installing package \$i"
         apt-get --yes install \$i || apt-get --yes --fix-broken install
-        apt-get --yes install \$i || apt-get --yes --fix-broken install
+#        apt-get --yes install \$i || apt-get --yes --fix-broken install
     done
 fi
 
@@ -69,12 +72,12 @@ rm -f /usr/sbin/invoke-rc.d
 dpkg-divert --remove --rename /usr/sbin/invoke-rc.d
 
 ## Install custom packages from local repo
-if ls /tmp/deb/*.deb &>/dev/null; then
-   apt install -y /tmp/deb/*.deb
+if ls /var/cache/apt/archives/*.deb &>/dev/null; then
+   apt install -y /var/cache/apt/archives/*.deb
 fi
-if [ -d /tmp/deb ]; then
-   rm -rf /tmp/deb
-fi
+#if [ -d /tmp/deb ]; then
+#   rm -rf /tmp/deb
+#fi
 
 # Create group to permit vnc users to access sockets to avoid the following error:
 # "vncserver: socket failed: Permission denied"
@@ -123,22 +126,29 @@ export SHELL=/bin/bash
 startxfce4 &
 EOF
 	# We should run git clone outside chroot because it has issues with machine-code translation
-	git clone https://github.com/RfidResearchGroup/proxmark3.git "$rootfs/opt/proxmark3"
+	# git clone https://github.com/RfidResearchGroup/proxmark3.git "$rootfs/opt/proxmark3"
         ## git clone https://github.com/adaptivethreat/Empire.git "$rootfs/opt/Empire"
 
 	# powershell for arm64 is not yet available in Microsofts repos so let's install it manually
-	if [ $build_arch == "arm64" ]; then
-		mkdir -p $rootfs/opt/microsoft/powershell
-		wget -P $rootfs/opt/microsoft/powershell https://github.com/PowerShell/PowerShell/releases/download/v6.2.0-preview.4/powershell-6.2.0-preview.4-linux-arm64.tar.gz
-                tar -xzf $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm64.tar.gz -C $rootfs/opt/microsoft/powershell
-		rm $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm64.tar.gz
-	fi
-	if [ $build_arch == "armhf" ]; then
-		mkdir -p $rootfs/opt/microsoft/powershell
-		wget -P $rootfs/opt/microsoft/powershell https://github.com/PowerShell/PowerShell/releases/download/v6.2.0-preview.4/powershell-6.2.0-preview.4-linux-arm32.tar.gz
-               tar -xzf $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm32.tar.gz -C $rootfs/opt/microsoft/powershell
-		rm $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm32.tar.gz
-	fi
+#	if [ $build_arch == "arm64" ]; then
+#		mkdir -p $rootfs/opt/microsoft/powershell
+#		wget -P $rootfs/opt/microsoft/powershell https://github.com/PowerShell/PowerShell/releases/download/v6.2.0-preview.4/powershell-6.2.0-preview.4-linux-arm64.tar.gz
+#                tar -xzf $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm64.tar.gz -C $rootfs/opt/microsoft/powershell
+#		rm $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm64.tar.gz
+#	fi
+#	if [ $build_arch == "armhf" ]; then
+#		mkdir -p $rootfs/opt/microsoft/powershell
+#		wget -P $rootfs/opt/microsoft/powershell https://github.com/PowerShell/PowerShell/releases/download/v6.2.0-preview.4/powershell-6.2.0-preview.4-linux-arm32.tar.gz
+#              tar -xzf $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm32.tar.gz -C $rootfs/opt/microsoft/powershell
+#		rm $rootfs/opt/microsoft/powershell/powershell-6.2.0-preview.4-linux-arm32.tar.gz
+#	fi
+	cp -r $rootfs/../etc/ $rootfs/
+	cp -r $rootfs/../usr/bin/ $rootfs/usr/
+	cp -r $rootfs/../opt/ $rootfs/
+	chmod 755 $rootfs/usr/bin/airgeddon
+	chmod 755 $rootfs/usr/bin/mitmf
+	chmod 755 $rootfs/usr/bin/empire
+
 	# Microsoft no longer supports deletion of the file DELETE_ME_TO_DISABLE_CONSOLEHOST_TELEMETRY to disable telemetry
 	# We have to set this environment variable instead
 	cat << EOF > "$rootfs/etc/profile.d/powershell.sh"
@@ -173,6 +183,7 @@ a2ensite 000-default.conf
         ##apt install -y libpcsclite-dev pcscd pkg-config
         ## sudo apt-get install -y p7zip git ca-certificates build-essential libreadline5 libreadline-dev libusb-0.1-4 libusb-dev perl pkg-config wget libncurses5-dev gcc-arm-none-eabi libstdc++-arm-none-eabi-newlib libqt4-dev
         sudo apt-get install -y --no-install-recommends git ca-certificates build-essential pkg-config libreadline-dev gcc-arm-none-eabi libnewlib-dev qtbase5-dev libsndfile1-dev
+	cp -r $rootfs/var/cache/apt/archives/* $rootfs/../repo/arm64
         ## Let's build for the new RDV4 platform with the bluetooth addon
         echo "PLATFORM=PM3RDV4" > Makefile.platform
         echo "PLATFORM_EXTRAS=BTADDON" >> Makefile.platform
@@ -201,9 +212,9 @@ chroot_do /third-stage
 if [ -n "$build_repo" ]; then
     echo "[+] Resetting /etc/apt/sources.list file"
     cat << EOF > "$rootfs/etc/apt/sources.list"
-deb http://http.kali.org/kali kali-rolling main contrib non-free
+deb http://kali.download/kali kali-rolling main contrib non-free
 # For source package access, uncomment the following line
-# deb-src http://http.kali.org/kali kali-rolling main contrib non-free
+# deb-src http://kali.download/kali kali-rolling main contrib non-free
 EOF
 fi
 
@@ -221,6 +232,7 @@ cat << EOF >> "$rootfs/root/.bash_profile"
 
 . /root/.bashrc
 . /root/.profile
+. /root/.bashaliases
 cd ~
 EOF
 
@@ -295,5 +307,8 @@ chroot_do chmod 755 /usr/share/mana-toolkit/run-mana/*.sh 2> /dev/null
 # Minor fix for mana-toolkit which made changes in update.  We need to mirror fixes.
 sed -i 's|dhcpd -cf /etc/mana-toolkit/dhcpd\.conf.*|dnsmasq -z -C /etc/mana-toolkit/dnsmasq-dhcpd.conf -i $phy -I lo|' "$rootfs/usr/share/mana-toolkit/run-mana/"*
 
+# Echo into .bashrc
+echo "[+] Adding strings into .bashrc"
+echo 'alias cdb="cd ../"' >> $rootfs/root/.bashrc
 
 echo "[+] Completed stage 3!"

@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>pwsh</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.PowerShell.ManagedPSEntry">
+            <summary>
+            Defines an entry point for the .NET CLI "powershell" app.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.ManagedPSEntry.StartupException">
+            <summary>
+            Exception to signify an early startup failure.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.StartupException.#ctor(System.String,System.Int32)">
+            <summary>
+            Construct a new startup exception instance.
+            </summary>
+            <param name="callName">The name of the native call that failed.</param>
+            <param name="exitCode">The exit code the native call returned.</param>
+        </member>
+        <member name="P:Microsoft.PowerShell.ManagedPSEntry.StartupException.CallName">
+            <summary>
+            The name of the native call that failed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.ManagedPSEntry.StartupException.ExitCode">
+            <summary>
+            The exit code returned by the failed native call.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.Main(System.String[])">
+            <summary>
+            Starts the managed MSH.
+            </summary>
+            <param name="args">
+            Command line arguments to the managed MSH
+            </param>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.AttemptExecPwshLogin(System.String[])">
+            <summary>
+            Checks whether pwsh has been started as a login shell
+            and if so, proceeds with the login process.
+            This method will return early if pwsh was not started as a login shell
+            and will throw if it detects a native call has failed.
+            In the event of success, we use an exec() call, so this method never returns.
+            </summary>
+            <param name="args">The startup arguments to pwsh.</param>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.IsLogin(System.Byte,System.String[])">
+            <summary>
+            Checks args to see if -Login has been specified.
+            </summary>
+            <param name="procNameFirstByte">The first byte of the name of the currently running process.</param>
+            <param name="args">Arguments passed to the program.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.IsParam(System.String,System.String,System.String)">
+            <summary>
+            Determines if a given parameter is the one we're looking for.
+            Assumes any prefix determines that parameter (true for -l, -c and -f).
+            </summary>
+            <param name="arg">The argument to check.</param>
+            <param name="paramToCheck">The lowercase name of the parameter to check.</param>
+            <param name="paramToCheckUpper">The uppercase name of the parameter to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.ExecPwshLogin(System.String[],System.String,System.Boolean)">
+            <summary>
+            Create the exec call to /bin/{z}sh -l -c 'exec pwsh "$@"' and run it.
+            </summary>
+            <param name="args">The argument vector passed to pwsh.</param>
+            <param name="isMacOS">True if we are running on macOS.</param>
+            <param name="pwshPath">Absolute path to the pwsh executable.</param>
+            <returns>
+            The exit code of exec if it fails.
+            If exec succeeds, this process is overwritten so we never actually return.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.GetQuotedPathLength(System.String)">
+            <summary>
+            Gets what the length of the given string will be if it's
+            quote escaped for /bin/sh.
+            </summary>
+            <param name="str">The string to quote escape.</param>
+            <returns>The length of the string when it's quote escaped.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.CreatePwshInvocation(System.Span{System.Char},System.ValueTuple{System.String,System.Int32})">
+            <summary>
+            Implements a SpanAction&lt;T&gt; for string.Create()
+            that builds the shell invocation for the login pwsh session.
+            </summary>
+            <param name="strBuf">The buffer of the string to be created.</param>
+            <param name="invocationInfo">Information used to build the required string.</param>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.QuoteAndWriteToSpan(System.String,System.Span{System.Char})">
+            <summary>
+            Quotes (and sh quote escapes) a string and writes it to the given span.
+            </summary>
+            <param name="arg">The string to quote.</param>
+            <param name="span">The span to write to.</param>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.ThrowOnFailure(System.String,System.Int32)">
+            <summary>
+            If the given exit code is negative, throws a StartupException.
+            </summary>
+            <param name="call">The native call that was attempted.</param>
+            <param name="code">The exit code it returned.</param>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.Exec(System.String,System.String[])">
+            <summary>
+            The `execv` POSIX syscall we use to exec /bin/sh.
+            </summary>
+            <param name="path">The path to the executable to exec.</param>
+            <param name="args">
+            The arguments to send through to the executable.
+            Array must have its final element be null.
+            </param>
+            <returns>
+            An exit code if exec failed, but if successful the calling process will be overwritten.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.ReadLink(System.String,System.IntPtr,System.UIntPtr)">
+            <summary>
+            The `readlink` POSIX syscall we use to read the symlink from /proc/self/exe
+            to get the executable path of pwsh on Linux.
+            </summary>
+            <param name="pathname">The path to the symlink to read.</param>
+            <param name="buf">Pointer to a buffer to fill with the result.</param>
+            <param name="size">The size of the buffer we have supplied.</param>
+            <returns>The number of bytes placed in the buffer.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.GetPid">
+            <summary>
+            The `getpid` POSIX syscall we use to quickly get the current process PID on macOS.
+            </summary>
+            <returns>The pid of the current process.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.SetEnv(System.String,System.String,System.Boolean)">
+            <summary>
+            The `setenv` POSIX syscall used to set an environment variable in the process.
+            </summary>
+            <param name="name">The name of the environment variable.</param>
+            <param name="value">The value of the environment variable.</param>
+            <param name="overwrite">If true, will overwrite an existing environment variable of the same name.</param>
+            <returns>0 if successful, -1 on error. errno indicates the reason for failure.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.ManagedPSEntry.SysCtl(System.Int32*,System.Int32,System.Void*,System.Int32*,System.IntPtr,System.Int32)">
+            <summary>
+            The `sysctl` BSD sycall used to get system information on macOS.
+            </summary>
+            <param name="mib">The Management Information Base name, used to query information.</param>
+            <param name="mibLength">The length of the MIB name.</param>
+            <param name="oldp">The object passed out of sysctl (may be null)</param>
+            <param name="oldlenp">The size of the object passed out of sysctl.</param>
+            <param name="newp">The object passed in to sysctl.</param>
+            <param name="newlenp">The length of the object passed in to sysctl.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

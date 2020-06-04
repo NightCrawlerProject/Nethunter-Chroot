@@ -1,0 +1,2 @@
+#!/bin/env python2.7
+/etc/MITMf/mitmf.py "$@"

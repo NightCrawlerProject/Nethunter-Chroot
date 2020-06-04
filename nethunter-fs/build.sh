@@ -66,7 +66,7 @@ done
 [ "$build_size" ] || exit_help "Build size not specified!"
 
 # set default architecture for most Android devices if not specified
-[ "$build_arch" ] || build_arch=armhf
+[ "$build_arch" ] || build_arch=arm64
 
 rootfs="kali-$build_arch"
 build_output="output/kalifs-$build_arch-$build_size"
@@ -181,7 +181,7 @@ pkg_full="kali-linux-nethunter
           msfpc exe2hexbat bettercap
           libapache2-mod-php7.3 libreadline6-dev libncurses5-dev libnewlib-arm-none-eabi
           binutils-arm-none-eabi gcc-arm-none-eabi autoconf libtool make gcc-9 g++-9
-          libxml2-dev zlib1g-dev"
+          libxml2-dev zlib1g-dev python python-dev python2.7 python2.7-dev python3 python3-dev python-capstone autoconf libtool curl libcurl4-openssl-dev libc6-dev-i386"
 
 # ARCH SPECIFIC PACKAGES
 pkg_minimal_armhf="abootimg cgpt fake-hwclock vboot-utils vboot-kernel-utils nethunter-utils"

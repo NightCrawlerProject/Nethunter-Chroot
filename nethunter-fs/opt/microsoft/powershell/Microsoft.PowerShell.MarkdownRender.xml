@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.PowerShell.MarkdownRender</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.CodeInlineRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for inline code elements.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.EmphasisInlineRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for bold and italics elements.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.FencedCodeBlockRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for code blocks with language type.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.HeaderBlockRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for headings.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.LeafInlineRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for leaf elements like plain text in paragraphs.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.LineBreakRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for line breaks.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.LinkInlineRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for links.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.ListBlockRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for list blocks.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.ListItemBlockRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for items in a list block.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.MarkdownConversionType">
+            <summary>
+            Type of conversion from Markdown.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownConversionType.HTML">
+            <summary>
+            Convert to HTML.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownConversionType.VT100">
+            <summary>
+            Convert to VT100 encoded string.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.MarkdownInfo">
+            <summary>
+            Object representing the conversion from Markdown.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.MarkdownInfo.Html">
+            <summary>
+            Gets the Html content after conversion.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.MarkdownInfo.VT100EncodedString">
+            <summary>
+            Gets the VT100 encoded string after conversion.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.MarkdownInfo.Tokens">
+            <summary>
+            Gets the AST of the Markdown string.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.MarkdownConverter">
+            <summary>
+            Class to convert a Markdown string to VT100, HTML or AST.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.MarkdownConverter.Convert(System.String,Microsoft.PowerShell.MarkdownRender.MarkdownConversionType,Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo)">
+            <summary>
+            Convert from Markdown string to VT100 encoded string or HTML. Returns MarkdownInfo object.
+            </summary>
+            <param name="markdownString">String with Markdown content to be converted.</param>
+            <param name="conversionType">Specifies type of conversion, either VT100 or HTML.</param>
+            <param name="optionInfo">Specifies the rendering options for VT100 rendering.</param>
+            <returns>MarkdownInfo object with the converted output.</returns>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.ParagraphBlockRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for paragraphs.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.QuoteBlockRenderer">
+            <summary>
+            Renderer for adding VT100 escape sequences for quote blocks.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty">
+            <summary>
+            Enum to name all the properties of PSMarkdownOptionInfo.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.Header1">
+            <summary>
+            Property name Header1.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.Header2">
+            <summary>
+            Property name Header2.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.Header3">
+            <summary>
+            Property name Header3.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.Header4">
+            <summary>
+            Property name Header4.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.Header5">
+            <summary>
+            Property name Header5.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.Header6">
+            <summary>
+            Property name Header6.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.Code">
+            <summary>
+            Property name Code.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.Link">
+            <summary>
+            Property name Link.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.Image">
+            <summary>
+            Property name Image.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.EmphasisBold">
+            <summary>
+            Property name EmphasisBold.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty.EmphasisItalics">
+            <summary>
+            Property name EmphasisItalics.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo">
+            <summary>
+            Class to represent color preference options for various Markdown elements.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.Header1">
+            <summary>
+            Gets or sets current VT100 escape sequence for header 1.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.Header2">
+            <summary>
+            Gets or sets current VT100 escape sequence for header 2.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.Header3">
+            <summary>
+            Gets or sets current VT100 escape sequence for header 3.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.Header4">
+            <summary>
+            Gets or sets current VT100 escape sequence for header 4.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.Header5">
+            <summary>
+            Gets or sets current VT100 escape sequence for header 5.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.Header6">
+            <summary>
+            Gets or sets current VT100 escape sequence for header 6.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.Code">
+            <summary>
+            Gets or sets current VT100 escape sequence for code inline and code blocks.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.Link">
+            <summary>
+            Gets or sets current VT100 escape sequence for links.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.Image">
+            <summary>
+            Gets or sets current VT100 escape sequence for images.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.EmphasisBold">
+            <summary>
+            Gets or sets current VT100 escape sequence for bold text.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.EmphasisItalics">
+            <summary>
+            Gets or sets current VT100 escape sequence for italics text.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.EnableVT100Encoding">
+            <summary>
+            Gets or sets a value indicating whether VT100 escape sequences should be added. Default it true.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.AsEscapeSequence(Microsoft.PowerShell.MarkdownRender.MarkdownOptionInfoProperty)">
+            <summary>
+            Get the property as an rendered escape sequence.
+            This is used by formatting system for displaying.
+            </summary>
+            <param name="propertyName">Name of the property to get as escape sequence.</param>
+            <returns>Specified property name as escape sequence.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo"/> class and sets dark as the default theme.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.SetDarkTheme">
+            <summary>
+            Set all preference for dark theme.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo.SetLightTheme">
+            <summary>
+            Set all preference for light theme.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.#ctor(Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences"/> class.
+            </summary>
+            <param name="optionInfo">PSMarkdownOptionInfo object to initialize with.</param>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatHeader1(System.String)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="headerText">Text of the header to format.</param>
+            <returns>Formatted Header 1 string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatHeader2(System.String)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="headerText">Text of the header to format.</param>
+            <returns>Formatted Header 2 string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatHeader3(System.String)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="headerText">Text of the header to format.</param>
+            <returns>Formatted Header 3 string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatHeader4(System.String)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="headerText">Text of the header to format.</param>
+            <returns>Formatted Header 4 string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatHeader5(System.String)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="headerText">Text of the header to format.</param>
+            <returns>Formatted Header 5 string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatHeader6(System.String)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="headerText">Text of the header to format.</param>
+            <returns>Formatted Header 6 string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatCode(System.String,System.Boolean)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="codeText">Text of the code block to format.</param>
+            <param name="isInline">True if it is a inline code block, false otherwise.</param>
+            <returns>Formatted code block string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatLink(System.String,System.String,System.Boolean)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="linkText">Text of the link to format.</param>
+            <param name="url">URL of the link.</param>
+            <param name="hideUrl">True url should be hidden, false otherwise. Default is true.</param>
+            <returns>Formatted link string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatEmphasis(System.String,System.Boolean)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="emphasisText">Text to format as emphasis.</param>
+            <param name="isBold">True if it is to be formatted as bold, false to format it as italics.</param>
+            <returns>Formatted emphasis string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100EscapeSequences.FormatImage(System.String)">
+            <summary>
+            Class to represent default VT100 escape sequences.
+            </summary>
+            <param name="altText">Text of the image to format.</param>
+            <returns>Formatted image string.</returns>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.VT100ObjectRenderer`1">
+            <summary>
+            Implement the MarkdownObjectRenderer with VT100Renderer.
+            </summary>
+            <typeparam name="T">The element type of the renderer.</typeparam>
+        </member>
+        <member name="T:Microsoft.PowerShell.MarkdownRender.VT100Renderer">
+            <summary>
+            Initializes an instance of the VT100 renderer.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.MarkdownRender.VT100Renderer.#ctor(System.IO.TextWriter,Microsoft.PowerShell.MarkdownRender.PSMarkdownOptionInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.PowerShell.MarkdownRender.VT100Renderer"/> class.
+            </summary>
+            <param name="writer">TextWriter to write to.</param>
+            <param name="optionInfo">PSMarkdownOptionInfo object with options.</param>
+        </member>
+        <member name="P:Microsoft.PowerShell.MarkdownRender.VT100Renderer.EscapeSequences">
+            <summary>
+            Gets the current escape sequences.
+            </summary>
+        </member>
+    </members>
+</doc>

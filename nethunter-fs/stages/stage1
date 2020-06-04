@@ -31,7 +31,7 @@ fi
 echo "[+] Starting debootstrap (download)..."
 tries=0
 max_tries=5
-while ! debootstrap --download-only --verbose --arch $build_arch kali-rolling "$rootfs" http://http.kali.org/kali; do
+while ! debootstrap --download-only --verbose --arch $build_arch kali-rolling "$rootfs" http://kali.download/kali; do
 	((tries++))
 	if [ $tries -ge $max_tries ]; then
 		echo "[!] Error, maximum retries ($max_tries) reached, could not download packages!"
@@ -42,7 +42,7 @@ while ! debootstrap --download-only --verbose --arch $build_arch kali-rolling "$
 done
 
 echo "[+] Starting debootstrap (install)..."
-debootstrap --foreign --verbose --arch $build_arch kali-rolling "$rootfs" http://http.kali.org/kali
+debootstrap --foreign --verbose --arch $build_arch kali-rolling "$rootfs" http://kali.download/kali
 
 echo "[+] Installing qemu-$qemu_arch-static interpreter to rootfs"
 if [ "$suse" = true ]; then

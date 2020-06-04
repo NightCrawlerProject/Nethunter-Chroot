@@ -1,0 +1,1328 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.PowerShell.Security</name>
+    </assembly>
+    <members>
+        <member name="T:CertificateCommands">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="M:CertificateCommands.#ctor">
+            <summary>constructor</summary>
+        </member>
+        <member name="P:CertificateCommands.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CertificateCommands.Culture">
+            <summary>
+              Overrides the current threads CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CertificateCommands.GetPfxCertPasswordPrompt">
+            <summary>
+              Looks up a localized string similar to 
+               Enter password: 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateCommands.NoneOfTheFilesFound">
+            <summary>
+              Looks up a localized string similar to 
+               Command cannot find any of the specified files.
+             
+            </summary>
+        </member>
+        <member name="P:CertificateCommands.FileNotFound">
+            <summary>
+              Looks up a localized string similar to 
+               The following file could not be found: {0}.
+             
+            </summary>
+        </member>
+        <member name="T:CertificateProviderStrings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="M:CertificateProviderStrings.#ctor">
+            <summary>constructor</summary>
+        </member>
+        <member name="P:CertificateProviderStrings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.Culture">
+            <summary>
+              Overrides the current threads CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CertProvidername">
+            <summary>
+              Looks up a localized string similar to 
+               X509 Certificate Provider
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CertificateNotFound">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot find the X509 certificate at path {0}.
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CertificateStoreNotFound">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot find the X509 certificate store at path {0}.
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CertificateStoreLocationNotFound">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot find the certificate store because the specified X509 store location {0} is not valid.
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.InvalidPath">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot process the path because path {0} is not a valid certificate provider path.
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.Action_Move">
+            <summary>
+              Looks up a localized string similar to 
+               Move certificate
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.Action_Remove">
+            <summary>
+              Looks up a localized string similar to 
+               Remove certificate
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.Action_RemoveAndDeleteKey">
+            <summary>
+              Looks up a localized string similar to 
+               Remove certificate and its private key.
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.Action_Invoke">
+            <summary>
+              Looks up a localized string similar to 
+               Invoke Certificate Manager
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.NotSupported_CertificateProvider">
+            <summary>
+              Looks up a localized string similar to 
+                 {0} is not supported in the current operating system. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.MoveItemTemplate">
+            <summary>
+              Looks up a localized string similar to 
+                 Item: {0} Destination: {1} 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CannotMoveContainer">
+            <summary>
+              Looks up a localized string similar to 
+                 You cannot move a certificate container. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CannotMoveCrossContext">
+            <summary>
+              Looks up a localized string similar to 
+                 You cannot move a certificate from user store to or from machine. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CannotMoveToSameStore">
+            <summary>
+              Looks up a localized string similar to 
+               You cannot move a certificate to the same store. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CannotCreateItem">
+            <summary>
+              Looks up a localized string similar to 
+               You cannot create an item other than certificate store. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CannotCreateUserStore">
+            <summary>
+              Looks up a localized string similar to 
+               Creating certificate stores under CurrentUser is not supported. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CannotDeleteUserStore">
+            <summary>
+              Looks up a localized string similar to 
+               Deleting certificate stores under CurrentUser is not supported. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.InvalidDestStore">
+            <summary>
+              Looks up a localized string similar to 
+               The destination is not a valid store. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.RemoveItemTemplate">
+            <summary>
+              Looks up a localized string similar to 
+               Item: {0} 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.RemoveStoreTemplate">
+            <summary>
+              Looks up a localized string similar to 
+               The store {0} is a built-in system store and cannot be deleted.
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.CannotRemoveContainer">
+            <summary>
+              Looks up a localized string similar to 
+               You cannot remove a certificate container. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.VerboseNoPrivateKey">
+            <summary>
+              Looks up a localized string similar to 
+               Private key skipped. The certificate has no private key association. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.UINotAllowed">
+            <summary>
+              Looks up a localized string similar to 
+               The operation is on user root store and UI is not allowed. 
+             
+            </summary>
+        </member>
+        <member name="P:CertificateProviderStrings.RemoteErrorMessage">
+            <summary>
+              Looks up a localized string similar to 
+               . The following error may be a result of user credentials required on the remote machine. See Enable-WSManCredSSP Cmdlet help on how to enable and use CredSSP for delegation with PowerShell remoting. 
+             
+            </summary>
+        </member>
+        <member name="T:CmsCommands">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="M:CmsCommands.#ctor">
+            <summary>constructor</summary>
+        </member>
+        <member name="P:CmsCommands.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CmsCommands.Culture">
+            <summary>
+              Overrides the current threads CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CmsCommands.FilePathMustBeFileSystemPath">
+            <summary>
+              Looks up a localized string similar to 
+               The path '{0}' must refer to a single file system path.
+             
+            </summary>
+        </member>
+        <member name="P:CmsCommands.InputContainedNoEncryptedContent">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot unprotect message. The input contained no encrypted content.
+             
+            </summary>
+        </member>
+        <member name="P:CmsCommands.InputContainedNoEncryptedContentIncludeContext">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot unprotect message. The input contained no encrypted content. Specify the '{0}' parameter if you wish to output the original content when no encrypted content is detected.
+             
+            </summary>
+        </member>
+        <member name="T:ExecutionPolicyCommands">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="M:ExecutionPolicyCommands.#ctor">
+            <summary>constructor</summary>
+        </member>
+        <member name="P:ExecutionPolicyCommands.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ExecutionPolicyCommands.Culture">
+            <summary>
+              Overrides the current threads CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ExecutionPolicyCommands.ExecutionPolicyOverridden">
+            <summary>
+              Looks up a localized string similar to 
+               PowerShell updated your execution policy successfully, but the setting is overridden by a policy defined at a more specific scope.  Due to the override, your shell will retain its current effective execution policy of {0}. Type "Get-ExecutionPolicy -List" to view your execution policy settings. For more information please see "Get-Help Set-ExecutionPolicy".
+             
+            </summary>
+        </member>
+        <member name="P:ExecutionPolicyCommands.ExecutionPolicyOverriddenRecommendedAction">
+            <summary>
+              Looks up a localized string similar to 
+               Contact your system administrator.
+             
+            </summary>
+        </member>
+        <member name="P:ExecutionPolicyCommands.ListAndScopeSpecified">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot get execution policy. Specify only the List or Scope parameters.
+             
+            </summary>
+        </member>
+        <member name="P:ExecutionPolicyCommands.CantSetGroupPolicy">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot set execution policy. Execution policies at the MachinePolicy or UserPolicy scopes must be set through Group Policy.
+             
+            </summary>
+        </member>
+        <member name="P:ExecutionPolicyCommands.SetExecutionPolicyCaption">
+            <summary>
+              Looks up a localized string similar to 
+               Execution Policy Change
+             
+            </summary>
+        </member>
+        <member name="P:ExecutionPolicyCommands.SetExecutionPolicyQuery">
+            <summary>
+              Looks up a localized string similar to 
+               The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks described in the about_Execution_Policies help topic at https://go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?
+             
+            </summary>
+        </member>
+        <member name="P:ExecutionPolicyCommands.SetExecutionPolicyAccessDeniedError">
+             <summary>
+               Looks up a localized string similar to 
+                {0}
+            To change the execution policy for the default (LocalMachine) scope, start PowerShell with the "Run as administrator" option. To change the execution policy for the current user, run "Set-ExecutionPolicy -Scope CurrentUser".
+              
+             </summary>
+        </member>
+        <member name="T:SecureStringCommands">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="M:SecureStringCommands.#ctor">
+            <summary>constructor</summary>
+        </member>
+        <member name="P:SecureStringCommands.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SecureStringCommands.Culture">
+            <summary>
+              Overrides the current threads CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SecureStringCommands.NewSecureString_Prompt">
+            <summary>
+              Looks up a localized string similar to 
+               Enter secret: 
+             
+            </summary>
+        </member>
+        <member name="P:SecureStringCommands.ForceRequired">
+            <summary>
+              Looks up a localized string similar to 
+               The system cannot protect plain text input. To suppress this warning and convert the plain text to a SecureString, reissue the command specifying the Force parameter. For more information, type: get-help ConvertTo-SecureString.
+             
+            </summary>
+        </member>
+        <member name="T:SignatureCommands">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="M:SignatureCommands.#ctor">
+            <summary>constructor</summary>
+        </member>
+        <member name="P:SignatureCommands.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SignatureCommands.Culture">
+            <summary>
+              Overrides the current threads CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SignatureCommands.CertNotGoodForSigning">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot sign code. The specified certificate is not suitable for code signing.
+             
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:SignatureCommands.TimeStampUrlRequired" -->
+        <member name="P:SignatureCommands.CannotRetrieveFromContainer">
+            <summary>
+              Looks up a localized string similar to 
+               The Get-AuthenticodeSignature cmdlet does not support directories. Supply a path to a file and retry.
+             
+            </summary>
+        </member>
+        <member name="P:SignatureCommands.FileNotFound">
+            <summary>
+              Looks up a localized string similar to 
+               File {0} was not found.
+             
+            </summary>
+        </member>
+        <member name="T:UtilsStrings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="M:UtilsStrings.#ctor">
+            <summary>constructor</summary>
+        </member>
+        <member name="P:UtilsStrings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.Culture">
+            <summary>
+              Overrides the current threads CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.FileSmallerThan4Bytes">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot digitally sign file because file {0} is smaller than 4 bytes in size. Files must be at least 4 bytes in order to be digitally signed.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.OperationNotSupportedOnPath">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot perform the operation because it is not supported on the object found in path {0}.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.GetMethodNotFound">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot get the ACL because the necessary method, GetSecurityDescriptor, does not exist.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.SetMethodNotFound">
+            <summary>
+              Looks up a localized string similar to 
+               Cannot set the ACL because the method that it needs to invoke, SetSecurityDescriptor, does not exist.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.MethodInvokeFail">
+            <summary>
+              Looks up a localized string similar to 
+               Could not perform operation because an exception was thrown during method invoke.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.GetSaclWithCapIdFail">
+            <summary>
+              Looks up a localized string similar to 
+               Could not create a SACL with the specified central access policy.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.GetEmptySaclFail">
+            <summary>
+              Looks up a localized string similar to 
+               Could not create an empty SACL.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.GetTokenWithEnabledPrivilegeFail">
+            <summary>
+              Looks up a localized string similar to 
+               Could not enable SeSecurityPrivilege.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.SetCentralAccessPolicyFail">
+            <summary>
+              Looks up a localized string similar to 
+               Could not set central access policy.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.InvalidCentralAccessPolicyParameters">
+            <summary>
+              Looks up a localized string similar to 
+               ClearCentralAccessPolicy and CentralAccessPolicy parameters cannot be used at the same time.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.InvalidCentralAccessPolicyIdentifier">
+            <summary>
+              Looks up a localized string similar to 
+               Central Access Policy identifier or name is not valid. If specifying an identifier, it must begin with S-1-17. If specifying a name, the policy must be applied on the target machine.
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.PromptForCredential_DefaultCaption">
+            <summary>
+              Looks up a localized string similar to 
+               PowerShell credential request
+             
+            </summary>
+        </member>
+        <member name="P:UtilsStrings.PromptForCredential_DefaultMessage">
+            <summary>
+              Looks up a localized string similar to 
+               Enter your credentials.
+             
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase">
+            <summary>
+            Defines the base class from which all Security Descriptor commands
+            are derived.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.Filter">
+            <summary>
+            Gets or sets the filter property.  The filter
+            property allows for provider-specific filtering of results.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.Include">
+            <summary>
+            Gets or sets the include property.  The include property
+            specifies the items on which the command will act.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.Exclude">
+            <summary>
+            Gets or sets the exclude property.  The exclude property
+            specifies the items on which the command will not act.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.CmdletProviderContext">
+            <summary>
+            The context for the command that is passed to the core command providers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.AddBrokeredProperties(System.Collections.ObjectModel.Collection{System.Management.Automation.PSObject},System.Boolean,System.Boolean)">
+            <summary>
+            Add brokered properties for easy access to important properties
+            of security descriptor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.GetPath(System.Management.Automation.PSObject)">
+            <summary>
+            Gets the Path of the provided PSObject.
+            </summary>
+            <param name="instance">
+            The PSObject for which to obtain the path.
+            </param>
+            <returns>
+            The path of the provided PSObject.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.GetOwner(System.Management.Automation.PSObject)">
+            <summary>
+            Gets the Owner of the provided PSObject.
+            </summary>
+            <param name="instance">
+            The PSObject for which to obtain the Owner.
+            </param>
+            <returns>
+            The Owner of the provided PSObject.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.GetGroup(System.Management.Automation.PSObject)">
+            <summary>
+            Gets the Group of the provided PSObject.
+            </summary>
+            <param name="instance">
+            The PSObject for which to obtain the Group.
+            </param>
+            <returns>
+            The Group of the provided PSObject.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.GetAccess(System.Management.Automation.PSObject)">
+            <summary>
+            Gets the access rules of the provided PSObject.
+            </summary>
+            <param name="instance">
+            The PSObject for which to obtain the access rules.
+            </param>
+            <returns>
+            The access rules of the provided PSObject.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.GetAudit(System.Management.Automation.PSObject)">
+            <summary>
+            Gets the audit rules of the provided PSObject.
+            </summary>
+            <param name="instance">
+            The PSObject for which to obtain the audit rules.
+            </param>
+            <returns>
+            The audit rules of the provided PSObject.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.GetCentralAccessPolicyId(System.Management.Automation.PSObject)">
+            <summary>
+            Gets the central access policy ID of the provided PSObject.
+            </summary>
+            <param name="instance">
+            The PSObject for which to obtain the central access policy ID.
+            </param>
+            <returns>
+            The central access policy ID of the provided PSObject.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase.GetSddl(System.Management.Automation.PSObject)">
+            <summary>
+            Gets the security descriptor (in SDDL form) of the
+            provided PSObject.  SDDL form is the Security Descriptor
+            Definition Language.
+            </summary>
+            <param name="instance">
+            The PSObject for which to obtain the security descriptor.
+            </param>
+            <returns>
+            The security descriptor of the provided PSObject, in SDDL form.
+            </returns>
+        </member>
+        <member name="F:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase._filter">
+            <summary>
+            The filter to be used to when globbing to get the item.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase._include">
+            <summary>
+            The glob string used to determine which items are included.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.Commands.SecurityDescriptorCommandsBase._exclude">
+            <summary>
+            The glob string used to determine which items are excluded.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.GetPfxCertificateCommand">
+            <summary>
+            Defines the implementation of the get-pfxcertificate cmdlet.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetPfxCertificateCommand.FilePath">
+            <summary>
+            Gets or sets the path of the item for which to obtain the
+            certificate.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetPfxCertificateCommand.LiteralPath">
+            <summary>
+            Gets or sets the literal path of the item for which to obtain the
+            certificate.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetPfxCertificateCommand.Password">
+            <summary>
+            Gets or sets the password for unlocking the certificate.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetPfxCertificateCommand.NoPromptForPassword">
+            <summary>
+            Do not prompt for password if not given.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetPfxCertificateCommand.#ctor">
+            <summary>
+            Initializes a new instance of the GetPfxCertificateCommand
+            class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetPfxCertificateCommand.ProcessRecord">
+            <summary>
+            Processes records from the input pipeline.
+            For each input file, the command retrieves its
+            corresponding certificate.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.ProtectCmsMessageCommand">
+             <summary>
+             Defines the implementation of the 'Protect-CmsMessage' cmdlet.
+            
+             This cmdlet generates a new encrypted CMS message given the
+             recipient and content supplied.
+             </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ProtectCmsMessageCommand.To">
+            <summary>
+            Gets or sets the recipient of the CMS Message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ProtectCmsMessageCommand.Content">
+            <summary>
+            Gets or sets the content of the CMS Message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ProtectCmsMessageCommand.Path">
+            <summary>
+            Gets or sets the content of the CMS Message by path.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ProtectCmsMessageCommand.LiteralPath">
+            <summary>
+            Gets or sets the content of the CMS Message by literal path.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ProtectCmsMessageCommand.OutFile">
+            <summary>
+            Emits the protected message to a file path.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.ProtectCmsMessageCommand.BeginProcessing">
+            <summary>
+            Validate / convert arguments.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.ProtectCmsMessageCommand.ProcessRecord">
+            <summary>
+            Processes records from the input pipeline.
+            For each input object, the command encrypts
+            and exports the object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.ProtectCmsMessageCommand.EndProcessing">
+            <summary>
+            Encrypts and outputs the message.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.GetCmsMessageCommand">
+             <summary>
+             Defines the implementation of the 'Get-CmsMessage' cmdlet.
+            
+             This cmdlet retrieves information about an encrypted CMS
+             message.
+             </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetCmsMessageCommand.Content">
+            <summary>
+            Gets or sets the content of the CMS Message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetCmsMessageCommand.Path">
+            <summary>
+            Gets or sets the CMS Message by path.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetCmsMessageCommand.LiteralPath">
+            <summary>
+            Gets or sets the CMS Message by literal path.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetCmsMessageCommand.BeginProcessing">
+            <summary>
+            Validate / convert arguments.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetCmsMessageCommand.ProcessRecord">
+            <summary>
+            Processes records from the input pipeline.
+            For each input object, the command gets the information
+            about the protected message and exports the object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetCmsMessageCommand.EndProcessing">
+            <summary>
+            Gets the CMS Message object.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand">
+             <summary>
+             Defines the implementation of the 'Unprotect-CmsMessage' cmdlet.
+            
+             This cmdlet retrieves the clear text content of an encrypted CMS
+             message.
+             </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand.Content">
+            <summary>
+            Gets or sets the content of the CMS Message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand.EventLogRecord">
+            <summary>
+            Gets or sets the Windows Event Log Message with contents to be decrypted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand.Path">
+            <summary>
+            Gets or sets the CMS Message by path.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand.LiteralPath">
+            <summary>
+            Gets or sets the CMS Message by literal path.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand.IncludeContext">
+            <summary>
+            Determines whether to include the decrypted content in its original context,
+            rather than just output the decrypted content itself.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand.To">
+            <summary>
+            Gets or sets the recipient of the CMS Message.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand.BeginProcessing">
+            <summary>
+            Validate / convert arguments.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand.ProcessRecord">
+            <summary>
+            Processes records from the input pipeline.
+            For each input object, the command gets the information
+            about the protected message and exports the object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.UnprotectCmsMessageCommand.EndProcessing">
+            <summary>
+            Processes records from the input pipeline.
+            For each input object, the command gets the information
+            about the protected message and exports the object.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.GetCredentialCommand">
+            <summary>
+            Defines the implementation of the 'get-credential' cmdlet.
+            The get-credential Cmdlet establishes a credential object called a
+            Msh credential, by pairing a given username with
+            a prompted password. That credential object can then be used for other
+            operations involving security.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.Commands.GetCredentialCommand.credentialSet">
+            <summary>
+            The Credential parameter set name.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.Commands.GetCredentialCommand.messageSet">
+            <summary>
+            The Message parameter set name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetCredentialCommand.Credential">
+            <summary>
+            Gets or sets the underlying PSCredential of
+            the instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetCredentialCommand.Message">
+            <summary>
+            Gets and sets the user supplied message providing description about which script/function is
+            requesting the PSCredential from the user.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetCredentialCommand.UserName">
+            <summary>
+            Gets and sets the user supplied username to be used while creating the PSCredential.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetCredentialCommand.Title">
+            <summary>
+            Gets and sets the title on the window prompt.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetCredentialCommand.#ctor">
+            <summary>
+            Initializes a new instance of the GetCredentialCommand
+            class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetCredentialCommand.BeginProcessing">
+            <summary>
+            The command outputs the stored PSCredential.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.GetExecutionPolicyCommand">
+             <summary>
+             Defines the implementation of the 'Get-ExecutionPolicy' cmdlet.
+             This cmdlet gets the effective execution policy of the shell.
+            
+             In priority-order (highest priority first,) these come from:
+                - Machine-wide Group Policy
+                - Current-user Group Policy
+                - Current session preference
+                - Current user machine preference
+                - Local machine preference.
+             </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetExecutionPolicyCommand.Scope">
+            <summary>
+            Gets or sets the scope of the execution policy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.GetExecutionPolicyCommand.List">
+            <summary>
+            Gets or sets the List parameter, which lists all scopes and their execution
+            policies.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetExecutionPolicyCommand.BeginProcessing">
+            <summary>
+            Outputs the execution policy.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.SetExecutionPolicyCommand">
+             <summary>
+             Defines the implementation of the 'Set-ExecutionPolicy' cmdlet.
+             This cmdlet sets the local preference for the execution policy of the
+             shell.
+            
+             The execution policy may be overridden by settings in Group Policy.
+             If the Group Policy setting overrides the desired behaviour, the Cmdlet
+             generates a terminating error.
+             </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SetExecutionPolicyCommand.ExecutionPolicy">
+            <summary>
+            Gets or sets the execution policy that the user requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SetExecutionPolicyCommand.Scope">
+            <summary>
+            Gets or sets the scope of the execution policy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SetExecutionPolicyCommand.Force">
+            <summary>
+            Specifies whether to force the execution policy change.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SetExecutionPolicyCommand.BeginProcessing">
+            <summary>
+            Sets the execution policy (validation).
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SetExecutionPolicyCommand.ProcessRecord">
+            <summary>
+            Set the desired execution policy.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.SecureStringCommandBase">
+            <summary>
+            Defines the base class from which all SecureString commands
+            are derived.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SecureStringCommandBase.SecureStringData">
+            <summary>
+            Gets or sets the secure string to be used by the get- and set-
+            commands.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SecureStringCommandBase.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the SecureStringCommandBase
+            class.
+            </summary>
+            <param name="name">
+            The command name deriving from this class
+            </param>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.ConvertFromToSecureStringCommandBase">
+            <summary>
+            Defines the base class from which all SecureString import and
+            export commands are derived.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.ConvertFromToSecureStringCommandBase.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ConvertFromToSecureStringCommandBase
+            class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ConvertFromToSecureStringCommandBase.SecureKey">
+            <summary>
+            Gets or sets the SecureString version of the encryption
+            key used by the SecureString cmdlets.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ConvertFromToSecureStringCommandBase.Key">
+            <summary>
+            Gets or sets the byte version of the encryption
+            key used by the SecureString cmdlets.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.ConvertFromSecureStringCommand">
+            <summary>
+            Defines the implementation of the 'ConvertFrom-SecureString' cmdlet.
+            This cmdlet exports a new SecureString -- one that represents
+            text that should be kept confidential. The text is encrypted
+            for privacy when being used, and deleted from computer memory
+            when no longer needed.  When no key is specified, the command
+            uses the DPAPI to encrypt the string. When a key is specified, the
+            command uses the AES algorithm to encrypt the string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.ConvertFromSecureStringCommand.#ctor">
+            <summary>
+            Initializes a new instance of the ExportSecureStringCommand class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ConvertFromSecureStringCommand.SecureString">
+            <summary>
+            Gets or sets the secure string to be exported.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ConvertFromSecureStringCommand.AsPlainText">
+            <summary>
+            Gets or sets a switch to get the secure string as plain text.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.ConvertFromSecureStringCommand.ProcessRecord">
+            <summary>
+            Processes records from the input pipeline.
+            For each input object, the command encrypts
+            and exports the object.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.ConvertToSecureStringCommand">
+            <summary>
+            Defines the implementation of the 'ConvertTo-SecureString' cmdlet.
+            This cmdlet imports a new SecureString from encrypted data --
+            one that represents text that should be kept confidential.
+            The text is encrypted for privacy when being used, and deleted
+            from computer memory when no longer needed.  When no key is
+            specified, the command uses the DPAPI to decrypt the data.
+            When a key is specified, the command uses the AES algorithm
+            to decrypt the data.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.ConvertToSecureStringCommand.#ctor">
+            <summary>
+            Initializes a new instance of the ImportSecureStringCommand class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ConvertToSecureStringCommand.String">
+            <summary>
+            Gets or sets the unsecured string to be imported.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ConvertToSecureStringCommand.AsPlainText">
+            <summary>
+            Gets or sets the flag that marks the unsecured string as a plain
+            text string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.ConvertToSecureStringCommand.Force">
+            <summary>
+            Gets or sets the flag that will force the import of a plaintext
+            unsecured string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.ConvertToSecureStringCommand.ProcessRecord">
+            <summary>
+            Processes records from the input pipeline.
+            For each input object, the command decrypts the data,
+            then exports a new SecureString created from the object.
+            </summary>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.SignatureCommandsBase">
+            <summary>
+            Defines the base class from which all signature commands
+            are derived.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SignatureCommandsBase.FilePath">
+            <summary>
+            Gets or sets the path to the file for which to get or set the
+            digital signature.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SignatureCommandsBase.LiteralPath">
+            <summary>
+            Gets or sets the literal path to the file for which to get or set the
+            digital signature.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SignatureCommandsBase.Signature">
+            <summary>
+            Gets or sets the digital signature to be written to
+            the output pipeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SignatureCommandsBase.SourcePathOrExtension">
+            <summary>
+            Gets or sets the file type of the byte array containing the content with
+            digital signature.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SignatureCommandsBase.Content">
+            <summary>
+            File contents as a byte array.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SignatureCommandsBase.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the SignatureCommandsBase class,
+            using the given command name.
+            </summary>
+            <param name="name">
+            The name of the command.
+            </param>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SignatureCommandsBase.ProcessRecord">
+            <summary>
+            Processes records from the input pipeline.
+            For each input object, the command gets or
+            sets the digital signature on the object, and
+            and exports the object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SignatureCommandsBase.PerformAction(System.String)">
+            <summary>
+            Performs the action (ie: get signature, or set signature)
+            on the specified file.
+            </summary>
+            <param name="filePath">
+            The name of the file on which to perform the action.
+            </param>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SignatureCommandsBase.PerformAction(System.String,System.Byte[])">
+            <summary>
+            Performs the action (ie: get signature, or set signature)
+            on the specified contents.
+            </summary>
+            <param name="fileName">
+            The filename used for type if content is specified.
+            </param>
+            <param name="content">
+            The file contents on which to perform the action.
+            </param>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.GetAuthenticodeSignatureCommand">
+            <summary>
+            Defines the implementation of the 'get-AuthenticodeSignature' cmdlet.
+            This cmdlet extracts the digital signature from the given file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetAuthenticodeSignatureCommand.#ctor">
+            <summary>
+            Initializes a new instance of the GetSignatureCommand class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetAuthenticodeSignatureCommand.PerformAction(System.String)">
+            <summary>
+            Gets the signature from the specified file.
+            </summary>
+            <param name="filePath">
+            The name of the file on which to perform the action.
+            </param>
+            <returns>
+            The signature on the specified file.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.GetAuthenticodeSignatureCommand.PerformAction(System.String,System.Byte[])">
+            <summary>
+            Gets the signature from the specified file contents.
+            </summary>
+            <param name="sourcePathOrExtension">The file type associated with the contents.</param>
+            <param name="content">
+            The contents of the file on which to perform the action.
+            </param>
+            <returns>
+            The signature on the specified file contents.
+            </returns>
+        </member>
+        <member name="T:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand">
+            <summary>
+            Defines the implementation of the 'set-AuthenticodeSignature' cmdlet.
+            This cmdlet sets the digital signature on a given file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.#ctor">
+            <summary>
+            Initializes a new instance of the SetAuthenticodeSignatureCommand class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.Certificate">
+            <summary>
+            Gets or sets the certificate with which to sign the
+            file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.IncludeChain">
+             <summary>
+             Gets or sets the additional certificates to
+             include in the digital signature.
+             Use 'signer' to include only the signer's certificate.
+             Use 'notroot' to include all certificates in the certificate
+                chain, except for the root authority.
+             Use 'all' to include all certificates in the certificate chain.
+            
+             Defaults to 'notroot'.
+             </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.TimestampServer">
+            <summary>
+            Gets or sets the Url of the time stamping server.
+            The time stamping server certifies the exact time
+            that the certificate was added to the file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.HashAlgorithm">
+            <summary>
+            Gets or sets the hash algorithm used for signing.
+            This string value must represent the name of a Cryptographic Algorithm
+            Identifier supported by Windows.
+            </summary>
+        </member>
+        <member name="P:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.Force">
+            <summary>
+            Property that sets force parameter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.PerformAction(System.String)">
+            <summary>
+            Sets the digital signature on the specified file.
+            </summary>
+            <param name="filePath">
+            The name of the file on which to perform the action.
+            </param>
+            <returns>
+            The signature on the specified file.
+            </returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.PerformAction(System.String,System.Byte[])">
+            <summary>
+            Not implemented.
+            </summary>
+        </member>
+        <member name="F:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.s_sigOptionInfo">
+            <summary>
+            Association between SigningOption.* values and the
+            corresponding string names.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PowerShell.Commands.SetAuthenticodeSignatureCommand.GetSigningOption(System.String)">
+            <summary>
+            Get SigningOption value corresponding to a string name.
+            </summary>
+            <param name="optionName">Name of option.</param>
+            <returns>SigningOption.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.SecurityUtils.GetFileSize(System.String)">
+            <summary>
+            Gets the size of a file.
+            </summary>
+            <param name="filePath">Path to file.</param>
+            <returns>File size.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.SecurityUtils.PromptForSecureString(System.Management.Automation.Host.PSHostUserInterface,System.String)">
+            <summary>
+            Present a prompt for a SecureString data.
+            </summary>
+            <param name="hostUI">Ref to host ui interface.</param>
+            <param name="prompt">Prompt text.</param>
+            <returns> user input as secure string.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.SecurityUtils.CreateFileNotFoundErrorRecord(System.String,System.String,System.Object[])">
+            <summary>
+            </summary>
+            <param name="resourceStr">Resource string.</param>
+            <param name="errorId">Error identifier.</param>
+            <param name="args">Replacement params for resource string formatting.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.SecurityUtils.CreatePathNotFoundErrorRecord(System.String,System.String)">
+            <summary>
+            </summary>
+            <param name="path">Path that was not found.</param>
+            <param name="errorId">Error identifier.</param>
+            <returns>ErrorRecord instance.</returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.SecurityUtils.CreateNotSupportedErrorRecord(System.String,System.String,System.Object[])">
+            <summary>
+            Create an error record for 'operation not supported' condition.
+            </summary>
+            <param name="resourceStr">Resource string.</param>
+            <param name="errorId">Error identifier.</param>
+            <param name="args">Replacement params for resource string formatting.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.SecurityUtils.CreateInvalidArgumentErrorRecord(System.Exception,System.String)">
+            <summary>
+            Create an error record for 'operation not supported' condition.
+            </summary>
+            <param name="e">Exception to include in ErrorRecord.</param>
+            <param name="errorId">Error identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.PowerShell.SecurityUtils.GetFilePathOfExistingFile(System.Management.Automation.PSCmdlet,System.String)">
+            <summary>
+            Convert the specified provider path to a provider path
+            and make sure that all of the following is true:
+            -- it represents a FileSystem path
+            -- it points to a file
+            -- the file exists.
+            </summary>
+            <param name="cmdlet">Cmdlet instance.</param>
+            <param name="path">Provider path.</param>
+            <returns>
+            filesystem path if all conditions are true,
+            null otherwise
+            </returns>
+        </member>
+    </members>
+</doc>

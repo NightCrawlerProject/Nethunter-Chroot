@@ -1,3 +1,14 @@
+# Modified by JakeFrostyYT
+```
+to download packages and save it locally
+just use a script i found
+apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances <replace-this-with-package> | grep "^\w" | sort -u)
+
+the main package we need is kali-linux-nethunter so just do
+apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances kali-linux-nethunter:arm64 | grep "^\w" | sort -u)
+
+Use the script only inside the repo/(build_arch) folder, for arm64 go to arm64 folder and use the script i provided, it will download the packages and dependencies recursively
+```
 # NetHunter chroot builder
 
 Build a basic NetHunter chroot

@@ -70,7 +70,6 @@ done
 
 rootfs="kali-$build_arch"
 build_output="output/kalifs-$build_arch-$build_size"
-
 mkdir -p output
 
 # Capture all output from here on in kalifs-*.log
@@ -181,7 +180,7 @@ pkg_full="kali-linux-nethunter
           msfpc exe2hexbat bettercap
           libapache2-mod-php7.3 libreadline6-dev libncurses5-dev libnewlib-arm-none-eabi
           binutils-arm-none-eabi gcc-arm-none-eabi autoconf libtool make gcc-9 g++-9
-          libxml2-dev zlib1g-dev python python-dev python2.7 python2.7-dev python3 python3-dev python-capstone autoconf libtool curl libcurl4-openssl-dev libc6-dev-i386"
+          libxml2-dev zlib1g-dev python python-dev python-pip python2.7 python2.7-dev python3 python3-dev python-capstone autoconf libtool curl libcurl4-openssl-dev libc6-dev-i386"
 
 # ARCH SPECIFIC PACKAGES
 pkg_minimal_armhf="abootimg cgpt fake-hwclock vboot-utils vboot-kernel-utils nethunter-utils"

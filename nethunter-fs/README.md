@@ -1,7 +1,7 @@
 # Modified by JakeFrostyYT
 ```
 I do not take credits for anything i did not modify, i only take credit for the work i have exerted on this project
-I'm only reviving this project to maintain it, and possibly makeit better.
+I'm only reviving this project to maintain it, and possibly make it better.
 ```
 # NetHunter chroot builder
 

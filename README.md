@@ -6,9 +6,18 @@ YOU are choosing to make these modificiations, and if
 you point your finger at me for messing up your device, I will laugh at you or something.
 Goodluck on testing.
 
+Requirements:
+Nethunter app
+Nethunter Terminal
+Nethunter KeX Client
+Atleast 8gb free space to ensure System stability
+Root Access
+
 ###      How to install     ###
 First:
-You need to have installed nethunter/pocohunter rom, or any rom actually as long as you have nethunter installed, if you wanna use pocohunter here's a link to the project https://github.com/Martinvlba/Pocohunter
+You need to have installed nethunter rom, or any rom actually as long as you have the following installed
+
+I will soon make a ROM with nethunter features out of the box
 
 Second:
 Install Magisk(Anything above magisk v20 is enough)
@@ -19,15 +28,19 @@ Put the downloaded chroot into your phone's internal storage
 you can rename it to kalifs-arm64-full.tar.xz
 
 Fourth:
-Enter the pocohunter/nethunter app(depends which rom you downloaded)
-In the pocohunter/nethunter app select Kali Chroot Manager,
+Enter the nethunter app
+In the nethunter app select Kali Chroot Manager,
 click install, type the location of the chroot you downloaded (kali-arm64-full.tar.xz)
 
 
+Latest Changelog:
 
-Update V2
-New commit features the modified buildscripts with a guide on how to use the scripts,
-it also features some folders which i put packges in like the etc, opt, usr folder, you can use it too to add things into the chroot,
-I also added in a script to download packages easily inside the /nethunter/repo folder, i temporarily removed  proxmark3 because of errors
-new release will be released in june 5 or 6
-end of commit.
+Update V3
+New Update is a little late but that wait is over!
+New update features old kali repo combined with kali.download as mirror,
+Packages like mitmf and bdfactory are installed using the old.kali.org repo and thus removed from the project files
+You can still use /etc, /opt and /usr directory of the project to add your code to the chroot
+New github packages include:
+airgeddon by v1s1t0r1sh3r3 https://github.com/v1s1t0r1sh3r3/airgeddon.git
+mirrorscript by jayantamadhav https://github.com/jayantamadhav/mirrorscript.git
+mirrorscript-v2 by IceM4nn https;//github.com/IceM4nn/mirrorscript-v2.git

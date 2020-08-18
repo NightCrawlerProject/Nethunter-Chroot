@@ -35,12 +35,56 @@ click install, type the location of the chroot you downloaded (kali-arm64-full.t
 
 Latest Changelog:
 
-Update V3
-New Update is a little late but that wait is over!
-New update features old kali repo combined with kali.download as mirror,
-Packages like mitmf and bdfactory are installed using the old.kali.org repo and thus removed from the project files
-You can still use /etc, /opt and /usr directory of the project to add your code to the chroot
-New github packages include:
-airgeddon by v1s1t0r1sh3r3 https://github.com/v1s1t0r1sh3r3/airgeddon.git
-mirrorscript by jayantamadhav https://github.com/jayantamadhav/mirrorscript.git
-mirrorscript-v2 by IceM4nn https;//github.com/IceM4nn/mirrorscript-v2.git
+Changelog V2:
+Major changes to the chroot
+
+New Custom Commands:
+
+listcustom - list all custom commands by JakeFrostyYT
+Author: JakeFrostyYT
+
+airgeddon - a multi-use bash script for Linux systems to audit wireless networks.
+Author: v1s1t0r1sh3r3
+
+chrootupdate - a script to update the chroot without the need to replace the current one entirely
+Author: JakeFrostyYT
+
+mirrorscript - Script to change kali repository mirror by jayantamadhav
+Author: jayantamadhav
+
+mirrorscript-v2 - Kali Mirrorscript-v2 by IceM4nn automatically select the best kali mirror server and apply the configuration
+Author: IceM4nn
+
+rcv - a custom script to automatically download a package together with its dependencies on the location specified
+Author: JakeFrostYT
+
+routersploit - Exploitation Framework for Embedded Devices
+echo "${LIGHTGREEN}Author: threat9
+
+Changes in sytem:
+
+kali.download and old.kali.org now exist in
+sources.list together instead of only old.kali.org
+
+chroot will rely on chrootupdate command for changes in chroot to
+avoid wasting alot of data by avoiding downloading a new chroot
+
+chroot now has custom attributes and colors, see below for added attributes and colors
+
+colors:
+NOCOLOR, RED, GREEN, ORANGE, BLUE, PURPLE, CYAN, LIGHTGRAY, DARKGRAY, LIGHTRED, LIGHTGREEN, YELLOW, LIGHTBLUE, LIGHTPURPLE, LIGHTCYAN, WHITE
+attributes:
+BOLD, DIM, UNDERLINE, BLINK, REVERSE, HIDDEN, RESETALL, RESETBOLD, RESETDIM, RESETUNDERLINE, RESETBLINK, RESETREVERSE, RESETHIDDEN
+
+usage examples
+' echo -e "${RED}this is RED" '
+' echo -e "no line ${UNDERLINE}underline${RESETUNDERLINE} no line" '
+' echo -e "no blink ${BLINK}blink${RESETBLINK} no blink" '
+
+Added Tools:
+Airgeddon
+chrootupdate
+mirrorscript
+mirrorscript-v2
+rcv
+routersploit

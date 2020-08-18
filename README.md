@@ -1,5 +1,5 @@
 # Nethunter-Chroot
- ## i am not responsible for your actions! IN EVERY WAY ##
+ ## I am not responsible for your actions! IN EVERY WAY ##
 Your warranty is void. Or valid, probably?
 I am not responsible for bricked devices, dead SD cards, etc
 YOU are choosing to make these modificiations, and if

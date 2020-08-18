@@ -16,7 +16,7 @@ Root Access
 Currently the chroot sits around 5.8Gb when uncompressed
 
 ###      How to install     ###
- - I will soon make a ROM with nethunter features out of the box
+I will soon make a ROM with nethunter features out of the box
 
 - First:
   - You need to have installed nethunter rom, or any rom actually as long as you have the following installed

@@ -6,12 +6,14 @@ YOU are choosing to make these modificiations, and if
 you point your finger at me for messing up your device, I will laugh at you or something.
 Goodluck on testing.
 
-Requirements:
+## Requirements: ##
 Nethunter app
 Nethunter Terminal
 Nethunter KeX Client
 Atleast 8gb free space to ensure System stability
 Root Access
+
+Currently the chroot sits around 5.8Gb when uncompressed
 
 ###      How to install     ###
 First:
@@ -33,9 +35,9 @@ In the nethunter app select Kali Chroot Manager,
 click install, type the location of the chroot you downloaded (kali-arm64-full.tar.xz)
 
 
-Latest Changelog:
+### Latest Changelog: ###
 
-Changelog V2:
+#### Changelog V2: ####
 Major changes to the chroot
 
 New Custom Commands:

@@ -1,2 +1,2 @@
-#!bin/sh
-/etc/airgeddon/airgeddon.sh
+#!/bin/sh
+/etc/airgeddon/airgeddon.sh "$@"

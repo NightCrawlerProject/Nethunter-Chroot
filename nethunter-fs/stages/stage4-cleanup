@@ -13,6 +13,7 @@ rm -f /usr/bin/qemu*
 EOF
 
 chmod +x "$rootfs/cleanup"
+chroot_do /etc/setup/bashrc.sh
 chroot_do /cleanup
 
 echo "[+] Completed stage 4!"

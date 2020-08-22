@@ -75,6 +75,13 @@ mkdir -p output
 # Capture all output from here on in kalifs-*.log
 exec &> >(tee -a "${build_output}.log")
 
+ver=$(cat "version")
+sum=$(bc <<< "$ver + 1")
+echo "$sum" > 'version'
+buildver=$(cat "version")
+export buildver
+
+echo "[+] Currently building version $buildver"
 echo "[+] Selected build size: $build_size"
 echo "[+] Selected architecture: $build_arch"
 if [ -n "$build_repo" ]; then
@@ -180,7 +187,8 @@ pkg_full="kali-linux-nethunter
           msfpc exe2hexbat bettercap
           libapache2-mod-php7.3 libreadline6-dev libncurses5-dev libnewlib-arm-none-eabi
           binutils-arm-none-eabi gcc-arm-none-eabi autoconf libtool make gcc-9 g++-9
-          libxml2-dev zlib1g-dev python python-dev python-pip python2.7 python2.7-dev python3 python3-dev python-capstone autoconf libtool curl libcurl4-openssl-dev libc6-dev-i386"
+          libxml2-dev zlib1g-dev python python-dev python-pip python2.7 python2.7-dev python3 python3-dev python-capstone autoconf libtool curl libcurl4-openssl-dev libc6-dev-i386 hashcat hcxtools hcxdumptool bully
+	  tshark cowpatty wifite reaver pyrit mana-toolkit powershell nmap tree"
 
 # ARCH SPECIFIC PACKAGES
 pkg_minimal_armhf="abootimg cgpt fake-hwclock vboot-utils vboot-kernel-utils nethunter-utils"
@@ -275,6 +283,7 @@ XZ_OPTS=-9 tar cJvf "${build_output}.tar.xz" "$rootfs/"
 echo "[+] Generating sha512sum of kalifs."
 sha512sum "${build_output}.tar.xz" | sed "s|output/||" > "${build_output}.sha512sum"
 
+echo "[+] Build $buildver Successfully Compiled"
 echo "[+] Finished!  Check output folder for chroot."
 
 # Extract on device

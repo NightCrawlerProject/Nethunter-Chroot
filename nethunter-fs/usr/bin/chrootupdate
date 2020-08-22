@@ -1,0 +1,22 @@
+#!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+	echo "Please run this as root"
+	exit 1
+fi
+if [ -d "/etc/update/ChrootUpdateScript" ]; then
+	echo -e "${GREEN}Folder '/etc/update/ChrootUpdateScript' found"
+	echo -e "${WHITE}Proceeding"
+else
+	echo -e "${RED}Folder '/etc/update/ChrootUpdateScript' not found"
+	echo -e "${GREEN} Creating..."
+	mkdir /etc/update/ChrootUpdateScript
+	echo -e "${GREEN} Successfully created folder"
+fi
+
+rm /etc/update/ChrootUpdateScript/update.sh
+rm /etc/update/ChrootUpdateScript/script.sh
+wget -P /etc/update/ChrootUpdateScript/ https://raw.githubusercontent.com/JakeFrostyYT/ChrootUpdateScript/master/update.sh
+wget -P /etc/update/ChrootUpdateScript/ https://raw.githubusercontent.com/JakeFrostyYT/ChrootUpdateScript/master/script.sh
+chmod 755 /etc/update/ChrootUpdateScript/update.sh
+chmod 755 /etc/update/ChrootUpdateScript/script.sh
+/etc/update/ChrootUpdateScript/update.sh

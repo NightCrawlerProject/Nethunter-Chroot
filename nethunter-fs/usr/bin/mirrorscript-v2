@@ -1,0 +1,2 @@
+#!/bin/env bash
+exec python3 /etc/mirrorscript-v2/mirrorscript-v2.py "$@"

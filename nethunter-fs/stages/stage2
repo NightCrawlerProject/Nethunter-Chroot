@@ -5,13 +5,14 @@ echo "Creating /etc/apt/sources.list file"
 if [ -n "$build_repo" ]; then
     cat << EOF > "$rootfs/etc/apt/sources.list"
 deb http://kali.download/kali kali-rolling main contrib non-free
-deb http://kali.download/kali $build_repo main contrib non-free
+deb [trusted=yes] http://old.kali.org/kali 2019.1 main contrib non-free
 # For source package access, uncomment the following line
 deb-src http://kali.download/kali kali-rolling main contrib non-free
 EOF
 else
     cat << EOF > "$rootfs/etc/apt/sources.list"
 deb http://kali.download/kali kali-rolling main contrib non-free
+deb [trusted=yes] http://old.kali.org/kali 2019.1 main contrib non-free
 # For source package access, uncomment the following line
 deb-src http://kali.download/kali kali-rolling main contrib non-free
 EOF

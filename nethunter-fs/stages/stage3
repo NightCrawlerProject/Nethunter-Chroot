@@ -145,9 +145,6 @@ EOF
 	cp -r $rootfs/../etc/ $rootfs/
 	cp -r $rootfs/../usr/bin/ $rootfs/usr/
 	cp -r $rootfs/../opt/ $rootfs/
-	chmod 755 $rootfs/usr/bin/airgeddon
-	chmod 755 $rootfs/usr/bin/mitmf
-	chmod 755 $rootfs/usr/bin/empire
 
 	# Microsoft no longer supports deletion of the file DELETE_ME_TO_DISABLE_CONSOLEHOST_TELEMETRY to disable telemetry
 	# We have to set this environment variable instead
@@ -183,7 +180,6 @@ a2ensite 000-default.conf
         ##apt install -y libpcsclite-dev pcscd pkg-config
         ## sudo apt-get install -y p7zip git ca-certificates build-essential libreadline5 libreadline-dev libusb-0.1-4 libusb-dev perl pkg-config wget libncurses5-dev gcc-arm-none-eabi libstdc++-arm-none-eabi-newlib libqt4-dev
         sudo apt-get install -y --no-install-recommends git ca-certificates build-essential pkg-config libreadline-dev gcc-arm-none-eabi libnewlib-dev qtbase5-dev libsndfile1-dev
-	cp -r $rootfs/var/cache/apt/archives/* $rootfs/../repo/arm64
         ## Let's build for the new RDV4 platform with the bluetooth addon
         echo "PLATFORM=PM3RDV4" > Makefile.platform
         echo "PLATFORM_EXTRAS=BTADDON" >> Makefile.platform
@@ -213,8 +209,9 @@ if [ -n "$build_repo" ]; then
     echo "[+] Resetting /etc/apt/sources.list file"
     cat << EOF > "$rootfs/etc/apt/sources.list"
 deb http://kali.download/kali kali-rolling main contrib non-free
+deb http://kali.download/kali $build_repo main contrib non-free
 # For source package access, uncomment the following line
-# deb-src http://kali.download/kali kali-rolling main contrib non-free
+deb-src http://kali.download/kali main contrib non-free
 EOF
 fi
 
@@ -307,8 +304,7 @@ chroot_do chmod 755 /usr/share/mana-toolkit/run-mana/*.sh 2> /dev/null
 # Minor fix for mana-toolkit which made changes in update.  We need to mirror fixes.
 sed -i 's|dhcpd -cf /etc/mana-toolkit/dhcpd\.conf.*|dnsmasq -z -C /etc/mana-toolkit/dnsmasq-dhcpd.conf -i $phy -I lo|' "$rootfs/usr/share/mana-toolkit/run-mana/"*
 
-# Echo into .bashrc
-echo "[+] Adding strings into .bashrc"
-echo 'alias cdb="cd ../"' >> $rootfs/root/.bashrc
-
+# copy motd.sh to root dir
+cp $rootfs/../motd.sh $rootfs/root/motd.sh
+cp $rootfs/../version $rootfs/root/version
 echo "[+] Completed stage 3!"

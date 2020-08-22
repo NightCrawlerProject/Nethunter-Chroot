@@ -1,0 +1,2 @@
+#!/bin/env bash
+exec python /etc/mirrorscript/mirrorscript.py "$@"

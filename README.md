@@ -34,10 +34,21 @@ I will soon make a ROM with nethunter features out of the box
   - In the nethunter app select Kali Chroot Manager,
   - click install, type the location of the chroot you downloaded (kali-arm64-full.tar.xz)
 
-
+Remember to always use the latest version of chroot to ensure there aren't any bugs
 ### Latest Changelog: ###
 
 #### Changelog V2: ####
+
+##### Build 82 #####
+Please Update to Build 82 to fix some major problems in build 75
+Changelog V2
+-Build 82, Patch 5:
+Added KeX as build 75 somehow didn't have it installed
+Kali 2020.3
+ZSH as shell as of kali 2020.3 update
+Added samba and cifs-utils
+
+##### Build 75 #####
 Major changes to the chroot
 
  - New Custom Commands:

@@ -105,7 +105,7 @@ dep_check() {
 		schedtool e2fsprogs device-tree-compiler ccache dos2unix debootstrap"
 	suse_deps="gpg2 flex bison gperf zip curl libncurses6 glibc-devel-32bit
                 parted kpartx pixz qemu-linux-user abootimg vboot bc xz lzop automake autoconf m4 dosfstools rsync u-boot-tools
-                schedtool e2fsprogs dtc ccache dos2unix debootstrap dpkg"
+                schedtool e2fsprogs dtc ccache dos2unix debootstrap dpkg kali-tools-802-11 kali-tools-bluetooth kali-tools-hardware"
 
 	if [ "$suse" = true ]; then
 		for dep in $suse_deps; do
@@ -188,7 +188,7 @@ pkg_full="kali-linux-nethunter
           libapache2-mod-php7.3 libreadline6-dev libncurses5-dev libnewlib-arm-none-eabi
           binutils-arm-none-eabi gcc-arm-none-eabi autoconf libtool make gcc-9 g++-9
           libxml2-dev zlib1g-dev python python-dev python-pip python2.7 python2.7-dev python3 python3-dev python-capstone autoconf libtool curl libcurl4-openssl-dev libc6-dev-i386 hashcat hcxtools hcxdumptool bully
-	  tshark cowpatty wifite reaver pyrit mana-toolkit powershell nmap tree"
+	  tshark cowpatty wifite reaver pyrit mana-toolkit powershell nmap tree tightvncserver samba cifs-utils"
 
 # ARCH SPECIFIC PACKAGES
 pkg_minimal_armhf="abootimg cgpt fake-hwclock vboot-utils vboot-kernel-utils nethunter-utils"

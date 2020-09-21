@@ -54,25 +54,25 @@ Major changes to the chroot
  - New Custom Commands:
 
    - listcustom - list all custom commands by JakeFrostyYT
-   - Author: JakeFrostyYT
+    - Author: JakeFrostyYT
 
    - airgeddon - a multi-use bash script for Linux systems to audit wireless networks.
-   - Author: v1s1t0r1sh3r3
+    - Author: v1s1t0r1sh3r3
 
    - chrootupdate - a script to update the chroot without the need to replace the current one entirely
-   - Author: JakeFrostyYT
+    - Author: JakeFrostyYT
 
    - mirrorscript - Script to change kali repository mirror by jayantamadhav
-   - Author: jayantamadhav
+    - Author: jayantamadhav
 
    - mirrorscript-v2 - Kali Mirrorscript-v2 by IceM4nn automatically select the best kali mirror server and apply the configuration
-   - Author: IceM4nn
+    - Author: IceM4nn
 
    - rcv - a custom script to automatically download a package together with its dependencies on the location specified
-   - Author: JakeFrostYT
+    - Author: JakeFrostYT
 
    - routersploit - Exploitation Framework for Embedded Devices
-   - Author: threat9
+    - Author: threat9
 
 - Changes in sytem:
 

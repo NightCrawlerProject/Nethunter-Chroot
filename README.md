@@ -7,11 +7,11 @@ you point your finger at me for messing up your device, I will laugh at you or s
 Goodluck on testing.
 
 ## Requirements: ##
-Nethunter app
-Nethunter Terminal
-Nethunter KeX Client
-Atleast 8gb free space to ensure System stability
-Root Access
+Nethunter app,
+Nethunter Terminal,
+Nethunter KeX Client,
+Atleast 8gb free space to ensure System stability,
+Rooted Phone
 
 Currently the chroot sits around 5.8Gb when uncompressed
 

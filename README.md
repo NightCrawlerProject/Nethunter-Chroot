@@ -29,15 +29,15 @@ Currently the chroot sits around 5.8Gb when uncompressed
 I will soon make a ROM with nethunter features out of the box
 
 - First:
-  - You need to have installed nethunter rom, or any rom actually as long as you have the following installed
+  - Make sure every requirement is met
 
 - Second:
-  - Install Magisk(Anything above magisk v20 is enough)
+  - Install Magisk Root
 
 - Third:
-  - Download chroot from this repository
+  - Download chroot from any of the given download links
   - Put the downloaded chroot into your phone's internal storage
-  - you can rename it to kalifs-arm64-full.tar.xz
+  - Take note of the location where you saved the chroot, We'll need it later
 
 - Fourth:
   - Enter the nethunter app
@@ -57,6 +57,8 @@ Added KeX as build 75 somehow didn't have it installed
 Kali 2020.3
 ZSH as shell as of kali 2020.3 update
 Added samba and cifs-utils
+
+### Older changelogs: ###
 
 ##### Build 75 #####
 Major changes to the chroot

@@ -6,6 +6,16 @@ YOU are choosing to make these modificiations, and if
 you point your finger at me for messing up your device, I will laugh at you or something.
 Goodluck on testing.
 
+## Download links ##
+Github
+https://github.com/JakeFrostyYT/Nethunter-Chroot/releases
+
+Google Drive
+https://drive.google.com/drive/folders/1yd7EHtiv4FeQmf8J3F8GmEtAWWOH082i?usp=sharing
+
+Mega
+https://mega.nz/folder/GZJmybhR#Vb2jZaQQyZDX3ENoSAvxXg
+
 ## Requirements: ##
 Nethunter app,
 Nethunter Terminal,

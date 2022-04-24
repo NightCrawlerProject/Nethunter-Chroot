@@ -1,3 +1,5 @@
+# V3 is under consideration and planning as of 04/24/2022, please wait for further updates on this branch/version
+
 # Nethunter-Chroot
  ## I am not responsible for your actions! IN EVERY WAY ##
 Your warranty is void. Or valid, probably?

@@ -8,7 +8,7 @@ Goodluck on testing.
 
 ## Download links ##
 Github
-https://github.com/JakeFrostyYT/Nethunter-Chroot/releases
+https://github.com/NightCrawlerProject/Nethunter-Chroot/releases
 
 Google Drive
 https://drive.google.com/drive/folders/1yd7EHtiv4FeQmf8J3F8GmEtAWWOH082i?usp=sharing
